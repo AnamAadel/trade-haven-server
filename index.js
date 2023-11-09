@@ -61,7 +61,7 @@ const ourTeamsCollection = db.collection("ourTeams");
 
 
 app.use(cors({
-  origin: ["http://localhost:5173" , "https://assignment-11-cqrc.vercel.app", "https://assignment-11-cqrc-git-master-aadelbanat8991-gmailcom.vercel.app", "assignment-11-cqrc-3otz6oqhf-aadelbanat8991-gmailcom.vercel.app"],
+  origin: ["http://localhost:5173" , "https://assignment-11-cqrc.vercel.app", "https://assignment-11-cqrc-git-master-aadelbanat8991-gmailcom.vercel.app", "https://back-end-vercel-fe6ss6icx-aadelbanat8991-gmailcom.vercel.app/"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true
 }))
