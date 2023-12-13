@@ -93,6 +93,12 @@ app.get("/", async (req, res) => {
 // =================products ===================
 // create api to get all product data
 
+app.get("/products/all", async (req, res) => {
+  const products = await productCollection.find().toArray();
+    res.send(products);
+})
+// create api to get all product data
+
 app.get("/products/brands", async (req, res) => {
   const cursor = productCollection.aggregate([{ $project: { "brand": 1, "_id": 1 } }]);
   const categories = await cursor.toArray();
@@ -101,7 +107,7 @@ app.get("/products/brands", async (req, res) => {
 })
 
 
-// create api to get all product data
+// create api to get type product data
 
 app.get("/products/types", async (req, res) => {
   const cursor = productCollection.aggregate([{ $project: { "type": 1, "_id": 1 } }]);
