@@ -93,9 +93,9 @@ app.get("/", async (req, res) => {
 // =================products ===================
 // create api to get all product data
 
-app.get("/products/all", async (req, res) => {
+app.get("/products_all", async (req, res) => {
   const products = await productCollection.find().toArray();
-    res.send(products);
+    res.status(200).send(products);
 })
 // create api to get all product data
 
