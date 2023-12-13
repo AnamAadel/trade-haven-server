@@ -84,6 +84,12 @@ const verifyToken = (req, res, next) => {
 }
 
 
+app.get("/", async (req, res) => {
+  
+  res.send("server is running");
+})
+
+
 // =================products ===================
 // create api to get all product data
 
