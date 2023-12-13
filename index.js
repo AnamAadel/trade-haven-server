@@ -11,6 +11,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cookieParser())
+app.use(cors())
+app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASS}@cluster0.otazdf5.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -54,13 +56,6 @@ const bookedProductCollection = db.collection("bookedProducts");
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 
-
-
-
-
-
-app.use(cors())
-app.use(express.json());
 
 
 const verifyToken = (req, res, next) => {
@@ -216,13 +211,13 @@ app.get("/related_products/:type", async (req, res) => {
 
 // created api to get product data by id
 app.get("/products", async (req, res) => {
-  const limit = parseInt(req.query.limit);
-  const skip = parseInt(req.query.skip);
-  const productSort = req.query.productSort;
-  const price = parseInt(req.query.priceRange);
-  const category = req.query?.category?.split(",");
-  const brand = req.query?.brand?.split(",");
-  const search = req.query.search;
+  const limit = parseInt(req.query?.limit ? req.query?.limit : null);
+  const skip = parseInt(req.query?.skip ? req.query?.skip : null);
+  const productSort = req.query?.productSort ? req.query?.productSort : null;
+  const price = parseInt(req.query?.priceRange ? req.query?.priceRange : null);
+  const category = req.query?.category ? req.query?.category.split(",") : null; 
+  const brand = req.query?.brand ? req.query?.brand.split(",") : req.query?.brand;
+  const search = req.query?.search ? req.query?.search : null;
 
   console.log("isSearch", search !== "undefined")
   console.log("search", search)
