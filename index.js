@@ -389,10 +389,13 @@ app.get("/products", async (req, res) => {
 app.get("/blogs", async (req, res) => {
   const limit = parseInt(req.query?.limit ? req.query?.limit : null);
   const skip = parseInt(req.query?.skip ? req.query?.skip : null);
-  
-  const blogs = blogCollection.find().limit(limit).skip(skip).toArray()
 
-  res.send(blogs);
+    const blogs = await blogCollection.find().limit(limit).skip(skip).toArray()
+    
+    res.send(blogs);
+  
+    
+
 })
 
 // created api to get blog data by id
