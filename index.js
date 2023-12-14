@@ -387,8 +387,11 @@ app.get("/products", async (req, res) => {
 // create api to get all product data
 
 app.get("/blogs", async (req, res) => {
-  const cursor = blogCollection.find();
-  const blogs = await cursor.toArray();
+  const limit = parseInt(req.query?.limit ? req.query?.limit : null);
+  const skip = parseInt(req.query?.skip ? req.query?.skip : null);
+  
+  const blogs = blogCollection.find().limit(limit).skip(skip).toArray()
+
   res.send(blogs);
 })
 
